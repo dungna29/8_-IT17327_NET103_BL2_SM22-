@@ -13,15 +13,17 @@ namespace BAI_1_1_TongQuanWindowForm
     public partial class FrmQLPhimAnh : Form
     {
         private QLPhimService _qlPhimService;
-        Guid _idKhoaChinhCuaBanGhi;
+        private Guid _idKhoaChinhCuaBanGhi;
+
         public FrmQLPhimAnh()
         {
             InitializeComponent();
             _qlPhimService = new QLPhimService();
             _qlPhimService.FakeData();//Đổ dữ liệu vào List
             LoadTheLoai();
-            LoadPhim();
+            LoadPhim(null);
             rbtn_KoHoatDong.Checked = true;
+            txt_MaPhim.Enabled = false;
         }
 
         private void LoadTheLoai()
@@ -33,7 +35,7 @@ namespace BAI_1_1_TongQuanWindowForm
             cmb_TheLoai.SelectedIndex = 0;
         }
 
-        private void LoadPhim()
+        private void LoadPhim(string input)
         {
             int stt = 1;
             //Đếm được số lượng thuộc tính trong  1 Class đối tượng
@@ -48,19 +50,21 @@ namespace BAI_1_1_TongQuanWindowForm
             dgrid_Phim.Columns[5].Name = "Trạng Thái";
             dgrid_Phim.Rows.Clear();//Xóa trắng dataa mỗi lần load lại table
 
-            foreach (var x in _qlPhimService.GetALL())
+            foreach (var x in _qlPhimService.GetALL(input))
             {
                 dgrid_Phim.Rows.Add(stt++, x.Id, x.MaPhim, x.TenPhim, x.TheLoaiPhim,
                     (x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động"));
             }
-            
         }
 
         private PhimAnh GetValueDataFromControl()
         {
             return new PhimAnh()
             {
-                Id = Guid.Empty, MaPhim = txt_MaPhim.Text, TenPhim = txt_Ten.Text, TheLoaiPhim = cmb_TheLoai.Text,
+                Id = Guid.Empty,
+                MaPhim = txt_MaPhim.Text,
+                TenPhim = txt_Ten.Text,
+                TheLoaiPhim = cmb_TheLoai.Text,
                 TrangThai = (rbtn_HoatDong.Checked == true ? 1 : 0)
             };
             //Trả về 1 đối tượng chứa dữ liệu được lấy từ trên các control ở giao diện
@@ -69,7 +73,7 @@ namespace BAI_1_1_TongQuanWindowForm
         private void btn_Them_Click(object sender, EventArgs e)
         {
             MessageBox.Show(_qlPhimService.Add(GetValueDataFromControl()));
-            LoadPhim();
+            LoadPhim(null);
         }
 
         private void dgrid_Phim_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,7 +90,7 @@ namespace BAI_1_1_TongQuanWindowForm
             txt_Ten.Text = DoiTuongTimThay.TenPhim;
             txt_MaPhim.Text = DoiTuongTimThay.MaPhim;
             cmb_TheLoai.SelectedItem = DoiTuongTimThay.TheLoaiPhim;
-         
+
             if (DoiTuongTimThay.TrangThai == 1)
             {
                 rbtn_HoatDong.Checked = true;
@@ -94,7 +98,6 @@ namespace BAI_1_1_TongQuanWindowForm
             }
 
             rbtn_KoHoatDong.Checked = true;
-
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
@@ -102,15 +105,46 @@ namespace BAI_1_1_TongQuanWindowForm
             var temp = GetValueDataFromControl();
             temp.Id = _idKhoaChinhCuaBanGhi;
             MessageBox.Show(_qlPhimService.Update(temp));
-            LoadPhim();
+            LoadPhim(null);
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
             var temp = new PhimAnh();
-            temp.Id =_idKhoaChinhCuaBanGhi;
+            temp.Id = _idKhoaChinhCuaBanGhi;
             MessageBox.Show(_qlPhimService.Delete(temp));
-            LoadPhim();
+            LoadPhim(null);
+        }
+
+        private void txt_TimKiem_MouseClick(object sender, MouseEventArgs e)
+        {
+            //Khi click chuột vào ô tìm kiến sẽ xóa trắng
+            txt_TimKiem.Text = "";
+        }
+
+        private void txt_TimKiem_Leave(object sender, EventArgs e)
+        {
+            //Khi click ra control khác thì sẽ trả lại chữ  tìm kiếm
+            txt_TimKiem.Text = "Tìm Kiếm.......";
+            LoadPhim(null);
+        }
+
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            //Khi dữ liệu ở ô tìm kiếm bị thay đổi
+            LoadPhim(txt_TimKiem.Text);
+        }
+
+        private void txt_Ten_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_Ten.Text)) return;
+            txt_Ten.Text = Utility.VietHoaCaTen(txt_Ten.Text);
+        }
+
+        private void txt_Ten_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txt_Ten.Text)) return;
+            txt_MaPhim.Text = Utility.ZenMaTuDong(txt_Ten.Text);
         }
     }
 }

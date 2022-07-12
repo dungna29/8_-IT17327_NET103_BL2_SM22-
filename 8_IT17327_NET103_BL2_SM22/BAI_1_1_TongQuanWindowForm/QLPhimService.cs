@@ -9,6 +9,7 @@ namespace BAI_1_1_TongQuanWindowForm
     internal class QLPhimService
     {
         private List<PhimAnh> _lstPhimAnhs;
+
         public QLPhimService()
         {
             _lstPhimAnhs = new List<PhimAnh>();
@@ -36,6 +37,7 @@ namespace BAI_1_1_TongQuanWindowForm
             _lstPhimAnhs.Add(pa);
             return "Thêm thành công";
         }
+
         public string Update(PhimAnh pa)
         {
             int index = _lstPhimAnhs.FindIndex(c => c.Id == pa.Id);
@@ -46,6 +48,7 @@ namespace BAI_1_1_TongQuanWindowForm
             _lstPhimAnhs[index] = pa;
             return "Sửa thành công";
         }
+
         public string Delete(PhimAnh pa)
         {
             int index = _lstPhimAnhs.FindIndex(c => c.Id == pa.Id);
@@ -61,13 +64,14 @@ namespace BAI_1_1_TongQuanWindowForm
         {
             return _lstPhimAnhs;
         }
+
         public List<PhimAnh> GetALL(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
                 return GetALL();
             }
-            return _lstPhimAnhs.Where(c => c.MaPhim.StartsWith(input) || c.TenPhim.StartsWith(input)).ToList();
+            return _lstPhimAnhs.Where(c => c.MaPhim.ToLower().StartsWith(input.ToLower()) || c.TenPhim.ToLower().StartsWith(input.ToLower())).ToList();
         }
     }
 }
