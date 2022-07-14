@@ -32,6 +32,7 @@
             this.txt_TimKiem = new System.Windows.Forms.TextBox();
             this.dgrid_Phim = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.txt_MaPhim = new System.Windows.Forms.TextBox();
             this.rbtn_KoHoatDong = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txt_Ten = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_Xoa = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
@@ -89,6 +91,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txt_MaPhim);
             this.panel2.Controls.Add(this.rbtn_KoHoatDong);
             this.panel2.Controls.Add(this.label4);
@@ -103,6 +106,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(375, 323);
             this.panel2.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(29, 279);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 29);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Tên: ";
             // 
             // txt_MaPhim
             // 
@@ -198,15 +211,27 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.btn_Clear);
             this.panel3.Controls.Add(this.btn_Xoa);
             this.panel3.Controls.Add(this.btn_Sua);
             this.panel3.Controls.Add(this.btn_Them);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(381, 0);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(375, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(214, 323);
+            this.panel3.Size = new System.Drawing.Size(220, 323);
             this.panel3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 156);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(220, 39);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Giải Trí";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btn_Clear
             // 
@@ -214,7 +239,7 @@
             this.btn_Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Clear.Location = new System.Drawing.Point(0, 117);
             this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(214, 39);
+            this.btn_Clear.Size = new System.Drawing.Size(220, 39);
             this.btn_Clear.TabIndex = 3;
             this.btn_Clear.Text = "Clear";
             this.btn_Clear.UseVisualStyleBackColor = true;
@@ -225,7 +250,7 @@
             this.btn_Xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Xoa.Location = new System.Drawing.Point(0, 78);
             this.btn_Xoa.Name = "btn_Xoa";
-            this.btn_Xoa.Size = new System.Drawing.Size(214, 39);
+            this.btn_Xoa.Size = new System.Drawing.Size(220, 39);
             this.btn_Xoa.TabIndex = 2;
             this.btn_Xoa.Text = "Xóa";
             this.btn_Xoa.UseVisualStyleBackColor = true;
@@ -237,7 +262,7 @@
             this.btn_Sua.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Sua.Location = new System.Drawing.Point(0, 39);
             this.btn_Sua.Name = "btn_Sua";
-            this.btn_Sua.Size = new System.Drawing.Size(214, 39);
+            this.btn_Sua.Size = new System.Drawing.Size(220, 39);
             this.btn_Sua.TabIndex = 1;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
@@ -249,7 +274,7 @@
             this.btn_Them.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Them.Location = new System.Drawing.Point(0, 0);
             this.btn_Them.Name = "btn_Them";
-            this.btn_Them.Size = new System.Drawing.Size(214, 39);
+            this.btn_Them.Size = new System.Drawing.Size(220, 39);
             this.btn_Them.TabIndex = 0;
             this.btn_Them.Text = "Thêm";
             this.btn_Them.UseVisualStyleBackColor = true;
@@ -260,8 +285,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 658);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmQLPhimAnh";
             this.Text = "Quản lý phim FPOLY";
@@ -279,7 +304,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txt_TimKiem;
         private System.Windows.Forms.DataGridView dgrid_Phim;
         private System.Windows.Forms.RadioButton rbtn_HoatDong;
@@ -295,5 +319,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }
