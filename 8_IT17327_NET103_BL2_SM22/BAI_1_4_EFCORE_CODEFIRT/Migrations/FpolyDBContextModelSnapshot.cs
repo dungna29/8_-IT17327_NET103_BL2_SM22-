@@ -25,9 +25,6 @@ namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdTheLoaiPhim")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("MaPhim")
                         .HasColumnType("nvarchar(max)");
 
@@ -35,15 +32,15 @@ namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("TheLoaiPhim")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("TheLoaiPhimId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("TrangThai")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdTheLoaiPhim");
+                    b.HasIndex("TheLoaiPhimId");
 
                     b.ToTable("PhimAnh");
                 });
@@ -68,11 +65,11 @@ namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
 
             modelBuilder.Entity("BAI_1_4_EFCORE_CODEFIRT.DomainClass.PhimAnh", b =>
                 {
-                    b.HasOne("BAI_1_4_EFCORE_CODEFIRT.DomainClass.TheLoaiPhim", "TheLoaiPhims")
+                    b.HasOne("BAI_1_4_EFCORE_CODEFIRT.DomainClass.TheLoaiPhim", "TheLoaiPhim")
                         .WithMany()
-                        .HasForeignKey("IdTheLoaiPhim");
+                        .HasForeignKey("TheLoaiPhimId");
 
-                    b.Navigation("TheLoaiPhims");
+                    b.Navigation("TheLoaiPhim");
                 });
 #pragma warning restore 612, 618
         }

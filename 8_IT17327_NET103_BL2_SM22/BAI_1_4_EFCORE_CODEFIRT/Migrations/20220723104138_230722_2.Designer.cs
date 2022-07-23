@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
 {
     [DbContext(typeof(FpolyDBContext))]
-    [Migration("20220721110157_AddTLP2107221830")]
-    partial class AddTLP2107221830
+    [Migration("20220723104138_230722_2")]
+    partial class _230722_2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,13 +34,15 @@ namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("TheLoaiPhim")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("TheLoaiPhimId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("TrangThai")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TheLoaiPhimId");
 
                     b.ToTable("PhimAnh");
                 });
@@ -61,6 +63,15 @@ namespace BAI_1_4_EFCORE_CODEFIRT.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TheLoaiPhim");
+                });
+
+            modelBuilder.Entity("BAI_1_4_EFCORE_CODEFIRT.DomainClass.PhimAnh", b =>
+                {
+                    b.HasOne("BAI_1_4_EFCORE_CODEFIRT.DomainClass.TheLoaiPhim", "TheLoaiPhim")
+                        .WithMany()
+                        .HasForeignKey("TheLoaiPhimId");
+
+                    b.Navigation("TheLoaiPhim");
                 });
 #pragma warning restore 612, 618
         }
